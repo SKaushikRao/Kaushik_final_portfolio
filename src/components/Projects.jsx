@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaStar, FaCodeBranch, FaSpinner } from 'react-icons/fa';
+import { FaGithub, FaStar, FaCodeBranch, FaSpinner, FaCode } from 'react-icons/fa';
 import { HiExternalLink, HiArrowRight } from 'react-icons/hi';
 import useSWR from 'swr';
 import { config } from '../config.jsx';
+import InfiniteMenu from './InfiniteMenu.jsx';
 
 const languageColors = {
     JavaScript: '#f1e05a',
@@ -23,7 +24,7 @@ const languageColors = {
 };
 
 const ITEMS_PER_PAGE = 6;
-const GITHUB_API_URL = `https://api.github.com/users/kaushikrao/repos`;
+const GITHUB_API_URL = `https://api.github.com/users/SKaushikRao/repos`;
 
 const getProjectSize = (index) => {
     const sizes = [
@@ -182,9 +183,87 @@ const Projects = () => {
         }
     };
 
+    const itemAnimation = {
+        hidden: { opacity: 0, y: 20 },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.4 }
+        }
+    };
+
+    const featuredProjects = [
+        {
+            image: 'https://picsum.photos/512/512?random=1',
+            link: 'https://thriftz.in',
+            title: 'Thriftz Marketplace',
+            description: 'Sustainable fashion marketplace platform'
+        },
+        {
+            image: 'https://picsum.photos/512/512?random=2',
+            link: 'https://github.com/SKaushikRao/portfolio',
+            title: 'Portfolio Website',
+            description: 'Personal portfolio with React & Three.js'
+        },
+        {
+            image: 'https://picsum.photos/512/512?random=3',
+            link: 'https://github.com/SKaushikRao/ai-chatbot',
+            title: 'AI Chatbot',
+            description: 'Intelligent conversational AI assistant'
+        },
+        {
+            image: 'https://picsum.photos/512/512?random=4',
+            link: 'https://github.com/kaushikrao/ml-dashboard',
+            title: 'ML Dashboard',
+            description: 'Real-time machine learning analytics'
+        },
+        {
+            image: 'https://picsum.photos/512/512?random=5',
+            link: 'https://github.com/kaushikrao/mobile-app',
+            title: 'Mobile App',
+            description: 'Cross-platform mobile application'
+        }
+    ];
+
     return (
         <section id="projects" className="py-20 md:py-32 relative">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                {/* InfiniteMenu Section */}
+                <motion.div
+                    variants={containerAnimation}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="mb-20"
+                >
+                    <div className="max-w-2xl mx-auto text-center space-y-4 mb-12">
+                        <motion.div variants={itemAnimation} className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <FaCode className="w-4 h-4 text-white/80" />
+                            <span className="text-sm font-semibold text-white/80">Featured Projects</span>
+                        </motion.div>
+                        <motion.h2
+                            variants={itemAnimation}
+                            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
+                        >
+                            Interactive Project Gallery
+                        </motion.h2>
+                        <motion.p
+                            variants={itemAnimation}
+                            className="text-lg text-white/60"
+                        >
+                            Explore my featured projects in this interactive 3D gallery
+                        </motion.p>
+                    </div>
+
+                    <motion.div
+                        variants={itemAnimation}
+                        className="relative w-full h-[600px] bg-black/20 rounded-3xl overflow-hidden border border-white/10 backdrop-blur-sm"
+                    >
+                        <InfiniteMenu items={featuredProjects} scale={1} />
+                    </motion.div>
+                </motion.div>
+
+                {/* GitHub Projects Section */}
                 <motion.div
                     variants={containerAnimation}
                     initial="hidden"
@@ -194,13 +273,12 @@ const Projects = () => {
                 >
                     <div className="max-w-2xl mx-auto text-center space-y-4">
                         <motion.div
-                            variants={containerAnimation}
+                            variants={itemAnimation}
                             className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm"
                         >
                             <FaGithub className="w-4 h-4 text-white/80" />
                             <span className="text-sm font-semibold text-white/80">Latest Github Projects</span>
                         </motion.div>
-
                         <motion.h2
                             variants={containerAnimation}
                             className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
@@ -270,7 +348,7 @@ const Projects = () => {
                         </motion.div>
 
                         <motion.a
-                            href="https://github.com/kaushikrao"
+                            href="https://github.com/SKaushikRao"
                             target="_blank"
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
