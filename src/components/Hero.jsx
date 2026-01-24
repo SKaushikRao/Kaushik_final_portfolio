@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { HiCode, HiArrowRight } from 'react-icons/hi';
 import { config } from '../config.jsx';
+import DecryptedText from './DecryptedText.jsx';
 
 const Hero = () => {
     const navigate = useNavigate();
@@ -69,16 +70,30 @@ const Hero = () => {
                             Hi, I'm {config.developer.name}
                         </span>
                         <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-white/60 via-white to-white/60 bg-clip-text text-transparent">
-                            {config.developer.title}
+                            Co-Founder, Thriftz Marketplace LLP, Full stack web and App developer
                         </span>
                     </motion.h1>
 
-                    <motion.p
+                    <motion.div
                         variants={itemAnimation}
-                        className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 leading-relaxed max-w-2xl"
+                        className="relative"
                     >
-                        {config.developer.bio}
-                    </motion.p>
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl" />
+                        <div className="relative p-6 sm:p-8 md:p-10">
+                            <DecryptedText
+                                text="Full-stack builder creating digital experiences that respect humans and scale with clarity. Specializing in AI/ML integration and modern web technologies."
+                                speed={30}
+                                maxIterations={15}
+                                sequential={true}
+                                revealDirection="start"
+                                useOriginalCharsOnly={false}
+                                animateOn="view"
+                                className="text-white font-medium"
+                                encryptedClassName="text-white/40"
+                                parentClassName="block"
+                            />
+                        </div>
+                    </motion.div>
 
                     <motion.div
                         variants={itemAnimation}
