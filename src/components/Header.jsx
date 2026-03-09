@@ -47,7 +47,7 @@ const Header = () => {
                                 to="/"
                                 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
                             >
-                                {config.developer.name} | Devxora.
+                                {config.developer.name}
                             </Link>
                         </motion.div>
 

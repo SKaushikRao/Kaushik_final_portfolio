@@ -47,7 +47,7 @@ const languageColors = {
 };
 
 const ITEMS_PER_PAGE = 12;
-const GITHUB_API_URL = `https://api.github.com/users/kaushikrao/repos`;
+const GITHUB_API_URL = `https://api.github.com/users/SKaushikRao/repos`;
 
 const getProjectSize = (index) => {
     const sizes = [
@@ -229,7 +229,7 @@ const ProjectsPage = () => {
                             </div>
 
                             <motion.a
-                                href="https://github.com/kaushikrao"
+                                href="https://github.com/SKaushikRao"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.05 }}
@@ -244,16 +244,22 @@ const ProjectsPage = () => {
                         {/* Stats */}
                         <div className="flex items-center gap-6 pt-2 overflow-x-auto pb-2">
                             <div className="space-y-1 shrink-0">
-                                <span className="text-2xl sm:text-3xl font-bold text-white">{projects.length}+</span>
+                                <span className="text-2xl sm:text-3xl font-bold text-white">28</span>
                                 <p className="text-xs sm:text-sm text-white/60 whitespace-nowrap">
                                     Public Repositories
                                 </p>
                             </div>
-                            <div className="w-px h-8 sm:h-10 bg-white/10 shrink-0" />
                             <div className="space-y-1 shrink-0">
                                 <span className="text-2xl sm:text-3xl font-bold text-white">3+</span>
                                 <p className="text-xs sm:text-sm text-white/60 whitespace-nowrap">
                                     Years Experience
+                                </p>
+                            </div>
+                            <div className="w-px h-8 sm:h-10 bg-white/10 shrink-0" />
+                            <div className="space-y-1 shrink-0">
+                                <span className="text-2xl sm:text-3xl font-bold text-white">{projects.length}</span>
+                                <p className="text-xs sm:text-sm text-white/60 whitespace-nowrap">
+                                    Featured Projects
                                 </p>
                             </div>
                         </div>

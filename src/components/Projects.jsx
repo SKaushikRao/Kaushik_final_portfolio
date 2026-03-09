@@ -1,30 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaStar, FaCodeBranch, FaSpinner, FaCode } from 'react-icons/fa';
+import { FaGithub, FaCode } from 'react-icons/fa';
 import { HiExternalLink, HiArrowRight } from 'react-icons/hi';
-import useSWR from 'swr';
 import { config } from '../config.jsx';
 import InfiniteMenu from './InfiniteMenu.jsx';
-
-const languageColors = {
-    JavaScript: '#f1e05a',
-    TypeScript: '#2b7489',
-    Python: '#3572A5',
-    HTML: '#e34c26',
-    CSS: '#563d7c',
-    Java: '#b07219',
-    'C#': '#178600',
-    PHP: '#4F5D95',
-    Ruby: '#701516',
-    Go: '#00ADD8',
-    Swift: '#ffac45',
-    Kotlin: '#F18E33',
-    Rust: '#dea584',
-};
-
-const ITEMS_PER_PAGE = 6;
-const GITHUB_API_URL = `https://api.github.com/users/SKaushikRao/repos`;
 
 const getProjectSize = (index) => {
     const sizes = [
@@ -38,20 +18,10 @@ const getProjectSize = (index) => {
     return sizes[index % sizes.length];
 };
 
-const fetcher = async (url) => {
-    const res = await fetch(url);
-    if (!res.ok) {
-        throw new Error('Failed to fetch GitHub projects');
-    }
-    return res.json();
-};
-
 const ProjectCard = ({ project, size }) => {
-    const topics = project.topics || [];
-
     return (
         <motion.a
-            href={project.html_url}
+            href={project.github}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
@@ -75,62 +45,32 @@ const ProjectCard = ({ project, size }) => {
                             <div className="flex items-center space-x-2 flex-1 min-w-0">
                                 <FaGithub className="w-4 h-4 text-white flex-shrink-0" />
                                 <h3 className="font-bold text-white text-sm truncate">
-                                    {project.name}
+                                    {project.title}
                                 </h3>
                             </div>
                             <HiExternalLink className="w-4 h-4 text-white/60 group-hover:text-white transition-colors flex-shrink-0" />
                         </div>
 
                         <p className="text-xs text-white/70 line-clamp-3 leading-relaxed">
-                            {project.description || "No description provided"}
+                            {project.description}
                         </p>
                     </div>
 
                     <div className="flex flex-col gap-2 mt-auto">
-                        {topics.length > 0 && (
-                            <div className="flex flex-wrap gap-1.5">
-                                {topics.slice(0, size.includes('row-span-2') ? 3 : 2).map((topic) => (
-                                    <span
-                                        key={topic}
-                                        className="text-[10px] bg-white/10 text-white px-2 py-0.5 rounded-full border border-white/10"
-                                    >
-                                        {topic}
-                                    </span>
-                                ))}
-                                {topics.length > (size.includes('row-span-2') ? 3 : 2) && (
-                                    <span className="text-[10px] text-white/50">
-                                        +{topics.length - (size.includes('row-span-2') ? 3 : 2)}
-                                    </span>
-                                )}
-                            </div>
-                        )}
-
-                        <div className="flex items-center space-x-3 flex-wrap">
-                            {project.language && (
-                                <div className="flex items-center space-x-1">
-                                    <div
-                                        className="w-2.5 h-2.5 rounded-full"
-                                        style={{
-                                            backgroundColor: languageColors[project.language] || '#ccc'
-                                        }}
-                                    />
-                                    <span className="text-xs text-white/70">
-                                        {project.language}
-                                    </span>
-                                </div>
+                        <div className="flex flex-wrap gap-1.5">
+                            {project.technologies.slice(0, size.includes('row-span-2') ? 3 : 2).map((tech) => (
+                                <span
+                                    key={tech}
+                                    className="text-[10px] bg-white/10 text-white px-2 py-0.5 rounded-full border border-white/10"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                            {project.technologies.length > (size.includes('row-span-2') ? 3 : 2) && (
+                                <span className="text-[10px] text-white/50">
+                                    +{project.technologies.length - (size.includes('row-span-2') ? 3 : 2)}
+                                </span>
                             )}
-                            <div className="flex items-center space-x-1">
-                                <FaStar className="w-3 h-3 text-white/70" />
-                                <span className="text-xs text-white/70">
-                                    {project.stargazers_count}
-                                </span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                                <FaCodeBranch className="w-3 h-3 text-white/70" />
-                                <span className="text-xs text-white/70">
-                                    {project.forks_count}
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,41 +80,6 @@ const ProjectCard = ({ project, size }) => {
 };
 
 const Projects = () => {
-    const [page, setPage] = useState(1);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
-
-    const { data, error, isLoading, mutate: revalidateData } = useSWR(
-        `${GITHUB_API_URL}?sort=updated&per_page=${ITEMS_PER_PAGE * page}`,
-        fetcher,
-        {
-            revalidateOnFocus: false,
-            refreshInterval: 300000,
-            shouldRetryOnError: false,
-        }
-    );
-
-    const projects = useMemo(() => {
-        if (!data) return [];
-        const filtered = data
-            .filter(project => 
-                !project.fork && 
-                !project.private && 
-                (project.name.toLowerCase().includes('portfolio') || 
-                 (project.topics && project.topics.some(topic => topic.toLowerCase().includes('portfolio'))))
-            )
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
-            .slice(0, ITEMS_PER_PAGE * page);
-        
-        return filtered.map((project, index) => ({
-            ...project,
-            size: getProjectSize(index)
-        }));
-    }, [data, page]);
-
-    const loadMore = () => {
-        setPage(prev => prev + 1);
-    };
-
     const containerAnimation = {
         hidden: { opacity: 0 },
         show: {
@@ -195,33 +100,33 @@ const Projects = () => {
     const featuredProjects = [
         {
             image: 'https://picsum.photos/512/512?random=1',
-            link: 'https://thriftz.in',
-            title: 'Thriftz Marketplace',
-            description: 'Sustainable fashion marketplace platform'
+            link: 'https://github.com/SKaushikRao/virtual_laboratory_experience',
+            title: 'Virtual Laboratory',
+            description: 'Interactive virtual laboratory platform'
         },
         {
             image: 'https://picsum.photos/512/512?random=2',
-            link: 'https://github.com/SKaushikRao/portfolio',
-            title: 'Portfolio Website',
-            description: 'Personal portfolio with React & Three.js'
+            link: 'https://github.com/SKaushikRao/buildit_presentation_kaushik',
+            title: 'BuildIt Presentation',
+            description: 'Modern presentation platform'
         },
         {
             image: 'https://picsum.photos/512/512?random=3',
-            link: 'https://github.com/SKaushikRao/ai-chatbot',
-            title: 'AI Chatbot',
-            description: 'Intelligent conversational AI assistant'
+            link: 'https://github.com/SKaushikRao/AI_assisted_exam_integrity_system',
+            title: 'AI Exam Integrity',
+            description: 'AI-powered exam proctoring system'
         },
         {
             image: 'https://picsum.photos/512/512?random=4',
-            link: 'https://github.com/kaushikrao/ml-dashboard',
-            title: 'ML Dashboard',
-            description: 'Real-time machine learning analytics'
+            link: 'https://github.com/SKaushikRao?tab=repositories',
+            title: 'GitHub Repository',
+            description: 'Complete project collection'
         },
         {
             image: 'https://picsum.photos/512/512?random=5',
-            link: 'https://github.com/kaushikrao/mobile-app',
-            title: 'Mobile App',
-            description: 'Cross-platform mobile application'
+            link: 'https://thriftz.in',
+            title: 'Thriftz Marketplace',
+            description: 'Sustainable fashion platform'
         }
     ];
 
@@ -297,43 +202,12 @@ const Projects = () => {
                         variants={containerAnimation}
                         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 auto-rows-fr gap-4 w-full max-w-6xl mx-auto"
                     >
-                        {isLoading ? (
-                            Array(ITEMS_PER_PAGE).fill(0).map((_, index) => (
-                                <div key={index} className={getProjectSize(index)}>
-                                    <div className="bg-white/5 border border-white/10 p-5 rounded-2xl min-h-[140px] animate-pulse" />
-                                </div>
-                            ))
-                        ) : error ? (
-                            <div className="col-span-full text-center text-white/60">
-                                Failed to load projects. Please try again later.
-                            </div>
-                        ) : (
-                            projects.map((project) => (
-                                <ProjectCard key={project.id} project={project} size={project.size} />
-                            ))
-                        )}
+                        {config.projects.map((project, index) => (
+                            <ProjectCard key={project.id} project={project} size={getProjectSize(index)} />
+                        ))}
                     </motion.div>
 
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
-                        {!error && data?.length > projects.length && (
-                            <motion.button
-                                onClick={loadMore}
-                                disabled={isLoadingMore}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-all duration-300"
-                            >
-                                {isLoadingMore ? (
-                                    <>
-                                        <FaSpinner className="w-4 h-4 mr-2 animate-spin inline" />
-                                        Loading...
-                                    </>
-                                ) : (
-                                    'Load More Projects'
-                                )}
-                            </motion.button>
-                        )}
-
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}

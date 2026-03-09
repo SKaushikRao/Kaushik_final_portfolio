@@ -5,7 +5,7 @@ import { HiCode, HiCube, HiDatabase, HiMail, HiBriefcase } from "react-icons/hi"
 export const config = {
     developer: {
         name: "Kaushik",
-        title: "Full-Stack Developer & AI/ML Engineer",
+        title: "Co-Founder, Thriftz Marketplace LLP, Full stack web and App developer",
         bio: "Full-stack builder creating digital experiences that respect humans and scale with clarity. Specializing in AI/ML integration and modern web technologies."
     },
     contact: {
@@ -14,13 +14,15 @@ export const config = {
         location: "Bengaluru, Karnataka, India",
         linkedin: "linkedin.com/in/s-kaushik-rao-33336a289",
         portfolio: "skaushikraoportfolio.vercel.app",
-        github: "https://github.com/kaushikrao"
+        github: "https://github.com/SKaushikRao"
     },
     education: {
         university: "Manipal University Jaipur",
-        degree: "Bachelor of Technology in Computer Science (AI & Machine Learning)",
-        period: "August 2023 – May 2027",
-        location: "Jaipur, India"
+        degree: "B.Tech in Computer Science (AI & Machine Learning)",
+        period: "Aug 2023 – May 2027",
+        location: "Jaipur, India",
+        gpa: "8.05/10",
+        coursework: "Linear Algebra, Probability & Statistics, Data Structures, Algorithms, Machine Learning"
     },
     NAV_ITEMS: [
         { href: '/', label: 'Home' },
@@ -37,36 +39,26 @@ export const config = {
             skills: [
                 { name: "Python", level: "Advanced", hot: true },
                 { name: "JavaScript", level: "Advanced" },
+                { name: "SQL", level: "Intermediate" },
                 { name: "HTML5", level: "Expert" },
-                { name: "CSS3", level: "Expert" },
-                { name: "SQL", level: "Intermediate" }
+                { name: "CSS3", level: "Expert" }
             ]
         },
         {
             title: "Frameworks & Libraries",
             icon: <HiCube />,
-            description: "Web Development",
+            description: "Web Development & Data Processing",
             bgClass: "bg-emerald-500/10",
             iconClass: "text-emerald-500",
             skills: [
                 { name: "React.js", level: "Advanced", hot: true },
+                { name: "Apache Kafka", level: "Advanced" },
+                { name: "Apicurio", level: "Intermediate" },
+                { name: "Avro Schema", level: "Intermediate" },
                 { name: "Framer Motion", level: "Advanced" },
                 { name: "Bootstrap", level: "Intermediate" },
                 { name: "MediaPipe", level: "Intermediate" },
                 { name: "TensorFlow", level: "Intermediate" }
-            ]
-        },
-        {
-            title: "Cloud & DevOps",
-            icon: <HiDatabase />,
-            description: "Infrastructure & Deployment",
-            bgClass: "bg-orange-500/10",
-            iconClass: "text-orange-500",
-            skills: [
-                { name: "Google Cloud Platform", level: "Intermediate", hot: true },
-                { name: "Cloud Computing IaaS", level: "Intermediate" },
-                { name: "Vercel", level: "Advanced" },
-                { name: "Firebase", level: "Intermediate" }
             ]
         },
         {
@@ -76,11 +68,50 @@ export const config = {
             bgClass: "bg-purple-500/10",
             iconClass: "text-purple-500",
             skills: [
-                { name: "Machine Learning", level: "Intermediate", hot: true },
-                { name: "Computer Vision", level: "Intermediate" },
-                { name: "LLM Integration", level: "Intermediate" },
-                { name: "Probability Theory", level: "Intermediate" },
-                { name: "Statistics", level: "Intermediate" }
+                { name: "Computer Vision", level: "Advanced", hot: true },
+                { name: "Representation Learning", level: "Advanced" },
+                { name: "LLM Integration", level: "Advanced" },
+                { name: "Metric Learning", level: "Intermediate" }
+            ]
+        },
+        {
+            title: "Vision",
+            icon: <HiCube />,
+            description: "Computer Vision Tools",
+            bgClass: "bg-green-500/10",
+            iconClass: "text-green-500",
+            skills: [
+                { name: "MediaPipe", level: "Advanced", hot: true },
+                { name: "RetinaFace", level: "Advanced" },
+                { name: "ArcFace", level: "Advanced" },
+                { name: "OpenCV", level: "Advanced" },
+                { name: "TensorFlow", level: "Advanced" }
+            ]
+        },
+        {
+            title: "Systems",
+            icon: <HiDatabase />,
+            description: "Infrastructure & Architecture",
+            bgClass: "bg-orange-500/10",
+            iconClass: "text-orange-500",
+            skills: [
+                { name: "Apache Kafka", level: "Intermediate", hot: true },
+                { name: "Event-Driven Architectures", level: "Intermediate" },
+                { name: "Distributed Pipelines", level: "Intermediate" },
+                { name: "Apicurio", level: "Intermediate" },
+                { name: "Avro Schema", level: "Intermediate" }
+            ]
+        },
+        {
+            title: "Cloud",
+            icon: <HiDatabase />,
+            description: "Cloud Platforms",
+            bgClass: "bg-cyan-500/10",
+            iconClass: "text-cyan-500",
+            skills: [
+                { name: "GCP (Silver League)", level: "Advanced", hot: true },
+                { name: "AWS", level: "Intermediate" },
+                { name: "Microsoft Azure", level: "Intermediate" }
             ]
         },
         {
@@ -91,10 +122,8 @@ export const config = {
             iconClass: "text-pink-500",
             skills: [
                 { name: "Git", level: "Advanced", hot: true },
-                { name: "WordPress", level: "Intermediate" },
-                { name: "Notion", level: "Intermediate" },
-                { name: "Sanity CMS", level: "Intermediate" },
-                { name: "Xano", level: "Intermediate" }
+                { name: "Firebase", level: "Advanced" },
+                { name: "Vercel", level: "Advanced" }
             ]
         }
     ],
@@ -102,146 +131,172 @@ export const config = {
         {
             position: "Co-Founder",
             company: "Thriftz",
-            period: "April 2025 – Present",
+            period: "Apr 2025 – Present",
             location: "India",
-            description: "Built full-stack web and Android mobile application serving 500+ active students across institution. Led product development, technical strategy, and go-to-market execution for circular economy platform.",
+            description: "Architected and deployed full-stack marketplace (Web + Android/iOS) serving 1000+ active users. Selected Top 100 out of 23,000 startups nationwide; Winner – Most Innovative Startup Award. Finalist – IIT Roorkee E-Summit 2026.",
             responsibilities: [
-                "Built full-stack web and Android mobile application serving 500+ active students",
-                "Led product development, technical strategy, and go-to-market execution",
-                "Developed circular economy platform with real-time features"
+                "Architected and deployed full-stack marketplace (Web + Android/iOS) serving 1000+ active users",
+                "Designed real-time messaging and transaction pipelines; optimized backend queries reducing latency by 60%",
+                "Led product experimentation cycles across pricing, trust scoring, and user retention mechanisms",
+                "Selected Top 100 out of 23,000 startups nationwide; Winner – Most Innovative Startup Award",
+                "Finalist – IIT Roorkee E-Summit 2026"
             ],
-            technologies: ["React.js", "Android", "Node.js", "MongoDB", "Cloud Computing"]
+            technologies: ["Full-Stack", "Mobile Development", "Real-time Systems", "Backend Optimization"]
+        },
+        {
+            position: "Consultant Developer",
+            company: "Vital Vector",
+            period: "Jan 2026 – Present",
+            location: "India",
+            description: "Developed large-scale facial recognition systems using RetinaFace detection and ArcFace embedding pipelines. Engineered optimized inference workflows for classroom and facility deployments under constrained compute.",
+            responsibilities: [
+                "Developed large-scale facial recognition systems using RetinaFace detection and ArcFace embedding pipelines",
+                "Engineered optimized inference workflows for classroom and facility deployments under constrained compute",
+                "Reduced latency and memory footprint while maintaining real-time detection accuracy"
+            ],
+            technologies: ["Computer Vision", "RetinaFace", "ArcFace", "Optimization"]
         },
         {
             position: "Senior Technical Advisor",
             company: "IEEE GRSS MUJ",
-            period: "August 2025 – Present",
+            period: "Aug 2025 – Present",
             location: "Jaipur, India",
-            description: "Architected and developed official chapter website with 3D components and advanced animations using Framer Motion.",
+            description: "Architected and developed official chapter website with 3D components and advanced animations using Framer Motion. Achieved 95+ Lighthouse performance score.",
             responsibilities: [
-                "Architected and developed official chapter website",
-                "Implemented 3D components and advanced animations",
-                "Achieved 95+ Lighthouse performance score"
+                "Architected and developed official chapter website with 3D components and advanced animations",
+                "Implemented Framer Motion animations and interactive features",
+                "Achieved 95+ Lighthouse performance score and optimized user experience"
             ],
-            technologies: ["React.js", "Framer Motion", "Three.js", "3D Components"]
+            technologies: ["React.js", "Framer Motion", "Three.js", "3D Components", "Performance Optimization"]
         },
         {
-            position: "Projects and Research Director",
+            position: "Projects & Research Director",
             company: "AIML Community MUJ",
-            period: "June 2025 – Present",
+            period: "Jun 2025 – Present",
             location: "Jaipur, India",
-            description: "Led research initiatives and coordinated technical workshops for 200+ community members.",
+            description: "Lead applied ML research initiatives; mentor 200+ students across CV systems, LLM integration, and experimentation. Organized technical workshops and research sprints bridging theory with real-world AI deployment.",
             responsibilities: [
-                "Led research initiatives and coordinated technical workshops",
-                "Managed 200+ community members",
-                "Organized AI/ML focused events and research projects"
+                "Lead applied ML research initiatives; mentor 200+ students across CV systems, LLM integration, and experimentation",
+                "Organized technical workshops and research sprints bridging theory with real-world AI deployment"
             ],
-            technologies: ["AI/ML", "Research", "Community Management", "Technical Workshops"]
-        },
-        {
-            position: "Web Content Manager",
-            company: "TechLearn Solutions",
-            period: "May 2025 – Present",
-            location: "Remote",
-            description: "Managed digital content strategy and optimized web presence using SEO best practices and analytics.",
-            responsibilities: [
-                "Managed digital content strategy and optimized web presence",
-                "Implemented SEO best practices and analytics",
-                "Coordinated content creation workflows and maintained WordPress platform"
-            ],
-            technologies: ["WordPress", "SEO", "Analytics", "Content Management"]
+            technologies: ["Machine Learning", "Research", "Mentorship", "Workshops"]
         },
         {
             position: "Arcade Facilitator",
             company: "Google Cloud Skills Boost",
-            period: "April 2025 – Present",
+            period: "2025",
             location: "Remote",
-            description: "Facilitated hands-on cloud computing workshops on GCP services for 100+ labs.",
+            description: "Completed 100+ GCP labs; guided peers in cloud-native deployment, IAM, and scalable backend services. Achieved Silver League distinction.",
             responsibilities: [
-                "Facilitated hands-on cloud computing workshops on GCP services",
-                "Mentored 100+ students on cloud architecture and deployment strategies",
-                "Conducted Google Cloud learning labs and workshops"
+                "Completed 100+ GCP labs; guided peers in cloud-native deployment, IAM, and scalable backend services",
+                "Achieved Silver League distinction"
             ],
-            technologies: ["Google Cloud Platform", "Cloud Computing", "Mentoring", "Workshops"]
-        },
-        {
-            position: "Full Stack Engineer",
-            company: "ASR Aviation",
-            period: "March 2025 – May 2025",
-            location: "Remote",
-            description: "Developed responsive web applications using React.js, JavaScript, HTML5, CSS3, and Bootstrap framework.",
-            responsibilities: [
-                "Developed responsive web applications using React.js and Bootstrap",
-                "Collaborated with cross-functional teams to deliver customer-facing features",
-                "Worked under tight deadlines with high-quality deliverables"
-            ],
-            technologies: ["React.js", "JavaScript", "HTML5", "CSS3", "Bootstrap"]
+            technologies: ["Google Cloud Platform", "Cloud Architecture", "IAM", "Backend Services"]
         }
     ],
     projects: [
         {
             id: 1,
-            title: "AI Study Buddy",
-            description: "Engineered real-time focus monitoring system using MediaPipe for webcam-based attention tracking with 85% accuracy. Integrated large language model API for interactive tutoring with gesture-based hand detection for doubt resolution. Built responsive React.js interface with real-time video processing pipeline handling 30 FPS performance.",
+            title: "Virtual Laboratory Experience",
+            description: "Interactive virtual laboratory platform providing hands-on learning experience with advanced simulation capabilities and real-time collaboration features.",
             image: "/projects/project-1.webp",
-            technologies: ["Computer Vision", "LLM Integration", "MediaPipe", "React.js", "Real-time Processing"],
-            github: "https://github.com/kaushikrao",
-            demo: "#",
+            technologies: ["React.js", "WebRTC", "Real-time Collaboration", "Educational Tech"],
+            github: "https://github.com/SKaushikRao/virtual_laboratory_experience",
+            demo: "https://virtual-laboratory-experience.vercel.app/",
             featured: true
         },
         {
             id: 2,
-            title: "Thriftz Platform",
-            description: "Developed cross-platform solution with React.js web app and native Android application. Implemented user authentication, real-time chat, product listings, and transaction management features. Deployed on cloud infrastructure with 99.9% uptime; optimized database queries reducing latency by 60%.",
+            title: "BuildIt Presentation Platform",
+            description: "Modern presentation platform with advanced features for creating and delivering engaging presentations with real-time interaction capabilities.",
             image: "/projects/project-2.webp",
-            technologies: ["React.js", "Android", "Node.js", "Real-time Chat", "Cloud Infrastructure"],
-            github: "https://github.com/kaushikrao",
+            technologies: ["React.js", "Presentation Framework", "Real-time Features", "Modern UI"],
+            github: "https://github.com/SKaushikRao/buildit_presentation_kaushik",
             demo: "#",
             featured: true
         },
         {
             id: 3,
-            title: "IEEE GRSS Chapter Website",
-            description: "Created interactive website featuring 3D components, smooth animations, and modern UI/UX design patterns. Utilized React.js and Framer Motion for performant animations; achieved 95+ Lighthouse performance score.",
+            title: "AI Assisted Exam Integrity System",
+            description: "Advanced AI-powered proctoring system ensuring exam integrity through real-time monitoring, facial recognition, and anomaly detection.",
             image: "/projects/project-3.webp",
-            technologies: ["React.js", "Framer Motion", "3D Components", "Modern UI/UX", "Performance Optimization"],
-            github: "https://github.com/kaushikrao",
+            technologies: ["Computer Vision", "AI/ML", "Real-time Processing", "Face Recognition"],
+            github: "https://github.com/SKaushikRao/AI_assisted_exam_integrity_system",
+            demo: "https://ai-assisted-exam-integrity-system.vercel.app/",
+            featured: true
+        },
+        {
+            id: 4,
+            title: "Neuro-Symbolic Prototype for Real-Time Cognitive Load Estimation",
+            description: "Designed dual-process AI architecture integrating 30 FPS CV signal extraction with event-triggered LLM reasoning. Implemented gaze variance, blink suppression (EAR), head pose estimation (PnP), and semantic override logic.",
+            image: "/projects/project-1.webp",
+            technologies: ["Computer Vision", "LLM Integration", "Real-time Processing", "Neuro-Symbolic AI"],
+            github: "https://github.com/SKaushikRao",
+            demo: "#",
+            featured: true
+        },
+        {
+            id: 5,
+            title: "AI Proctor – Real-Time Identity & Event Streaming System",
+            description: "Built RetinaFace + ArcFace identity verification system with Kafka-based event streaming architecture. Designed anomaly detection and automated alert pipelines for scalable monitoring.",
+            image: "/projects/project-2.webp",
+            technologies: ["RetinaFace", "ArcFace", "Apache Kafka", "Event Streaming", "Anomaly Detection"],
+            github: "https://github.com/SKaushikRao",
+            demo: "#",
+            featured: true
+        },
+        {
+            id: 6,
+            title: "AI Study Buddy – Neuro-Symbolic Learning Assistant",
+            description: "Engineered webcam-based engagement monitoring integrated with LLM-driven tutoring architecture.",
+            image: "/projects/project-3.webp",
+            technologies: ["Computer Vision", "LLM Integration", "MediaPipe", "Educational AI"],
+            github: "https://github.com/SKaushikRao",
             demo: "#",
             featured: true
         }
     ],
     achievements: [
         {
-            title: "2x Hackathon Winner",
-            description: "ACM Hacks 10.0 Finalist and Techgig National Hackathon winner (2X)",
+            title: "5x Hackathon Winner",
+            description: "Google Developers TechSprint 2026 (Winner), Sociothon 2026, WikiClub Hackathon, Ideastorm (IIT Roorkee), TechGig National (2x)",
             type: "award"
         },
         {
             title: "4x SEA Awardee",
-            description: "Recognized for academic excellence and extracurricular contributions",
+            description: "Student Excellence Award (MUJ) for academic and extracurricular excellence",
             type: "award"
         },
         {
-            title: "Technical Head, Enviroclub MUJ",
-            description: "Managed technology infrastructure and digital initiatives",
-            period: "June 2024 – Aug 2025",
-            type: "leadership"
+            title: "Top 100 Startups Nationwide",
+            description: "Selected among Top 100 out of 23,000 startups nationwide (Campus Tank 2026)",
+            type: "award"
+        },
+        {
+            title: "Most Innovative Startup Award",
+            description: "Winner – Most Innovative Startup Award",
+            type: "award"
+        },
+        {
+            title: "IIT Roorkee E-Summit Finalist",
+            description: "Finalist – IIT Roorkee E-Summit 2026",
+            type: "award"
         }
     ],
     certifications: [
         {
-            name: "Introduction to Machine Learning",
-            issuer: "Coursera",
+            name: "AWS Certified Programs",
+            issuer: "Amazon Web Services",
             type: "certification"
         },
         {
-            name: "Artificial Intelligence Course",
-            issuer: "AI/ML Platform",
+            name: "Microsoft Learn Certifications",
+            issuer: "Microsoft",
             type: "certification"
         },
         {
-            name: "Business Communication",
-            issuer: "Professional Development",
+            name: "Google Cloud Skill Boost",
+            issuer: "Google Cloud",
             type: "certification"
         }
     ],
@@ -266,9 +321,9 @@ export const config = {
         },
         {
             icon: <FaGithub className="w-5 h-5" />,
-            label: "Portfolio",
-            value: "skaushikraoportfolio.vercel.app",
-            link: "https://skaushikraoportfolio.vercel.app"
+            label: "GitHub",
+            value: "SKaushikRao",
+            link: "https://github.com/SKaushikRao"
         },
         {
             icon: <FaMapPin className="w-5 h-5" />,
