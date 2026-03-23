@@ -99,34 +99,34 @@ const Projects = () => {
 
     const featuredProjects = [
         {
-            image: 'https://picsum.photos/512/512?random=1',
-            link: 'https://github.com/SKaushikRao/virtual_laboratory_experience',
+            image: '/src/assets/img5.jpg',
+            link: 'https://play.google.com/store/apps/details?id=com.anonymous.thriftzapp',
+            title: 'Thriftz Marketplace',
+            description: 'Sustainable fashion platform'
+        },
+        {
+            image: '/src/assets/img1.jpg',
+            link: 'https://virtual-laboratory-experience.vercel.app/',
             title: 'Virtual Laboratory',
             description: 'Interactive virtual laboratory platform'
         },
         {
-            image: 'https://picsum.photos/512/512?random=2',
-            link: 'https://github.com/SKaushikRao/buildit_presentation_kaushik',
-            title: 'BuildIt Presentation',
-            description: 'Modern presentation platform'
-        },
-        {
-            image: 'https://picsum.photos/512/512?random=3',
-            link: 'https://github.com/SKaushikRao/AI_assisted_exam_integrity_system',
+            image: '/src/assets/img2.jpg',
+            link: 'https://ai-assisted-exam-integrity-system.vercel.app/',
             title: 'AI Exam Integrity',
             description: 'AI-powered exam proctoring system'
         },
         {
-            image: 'https://picsum.photos/512/512?random=4',
-            link: 'https://github.com/SKaushikRao?tab=repositories',
-            title: 'GitHub Repository',
-            description: 'Complete project collection'
+            image: '/src/assets/img3.jpg',
+            link: 'https://ai-study-companion-seven.vercel.app/',
+            title: 'AI Study Buddy',
+            description: 'AI-powered learning companion'
         },
         {
-            image: 'https://picsum.photos/512/512?random=5',
-            link: 'https://thriftz.in',
-            title: 'Thriftz Marketplace',
-            description: 'Sustainable fashion platform'
+            image: '/src/assets/img4.jpg',
+            link: 'https://github.com/SKaushikRao',
+            title: 'GitHub Repository',
+            description: 'Complete project collection'
         }
     ];
 
