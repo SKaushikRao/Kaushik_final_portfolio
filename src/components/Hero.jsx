@@ -81,7 +81,11 @@ const Hero = () => {
                         <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl" />
                         <div className="relative p-6 sm:p-8 md:p-10">
                             <DecryptedText
-                                text="Full-stack builder creating digital experiences that respect humans and scale with clarity. Specializing in AI/ML integration and modern web technologies."
+                                text="Co-founder of Thriftz and Computer Science major focused on building scalable full-stack and cross-platform applications.
+
+5× SEA Awardee and 5× Hackathon winner with proven execution in high-pressure environments. Experience spans AI/ML research (Department of AI & ML), technical leadership as Senior Technical Advisor at IEEE GRSS, and active participation in Google Cloud's Silver League and Arcade program.
+
+Driven to engineer real-world, high-impact products at the intersection of AI and software systems."
                                 speed={30}
                                 maxIterations={15}
                                 sequential={true}
