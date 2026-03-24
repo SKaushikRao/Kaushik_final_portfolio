@@ -99,31 +99,31 @@ const Projects = () => {
 
     const featuredProjects = [
         {
-            image: '/src/assets/img5.jpg',
+            image: '/assets/img5.jpg',
             link: 'https://play.google.com/store/apps/details?id=com.anonymous.thriftzapp',
             title: 'Thriftz Marketplace',
             description: 'Sustainable fashion platform'
         },
         {
-            image: '/src/assets/img1.jpg',
+            image: '/assets/img1.jpg',
             link: 'https://virtual-laboratory-experience.vercel.app/',
             title: 'Virtual Laboratory',
             description: 'Interactive virtual laboratory platform'
         },
         {
-            image: '/src/assets/img2.jpg',
+            image: '/assets/img2.jpg',
             link: 'https://ai-assisted-exam-integrity-system.vercel.app/',
             title: 'AI Exam Integrity',
             description: 'AI-powered exam proctoring system'
         },
         {
-            image: '/src/assets/img3.jpg',
+            image: '/assets/img3.jpg',
             link: 'https://ai-study-companion-seven.vercel.app/',
             title: 'AI Study Buddy',
             description: 'AI-powered learning companion'
         },
         {
-            image: '/src/assets/img4.jpg',
+            image: '/assets/img4.jpg',
             link: 'https://github.com/SKaushikRao',
             title: 'GitHub Repository',
             description: 'Complete project collection'

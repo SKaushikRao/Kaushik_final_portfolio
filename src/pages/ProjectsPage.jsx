@@ -1,9 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaStar, FaCodeBranch, FaSpinner } from 'react-icons/fa';
-import { HiArrowRight, HiCode, HiExternalLink } from 'react-icons/hi';
-import useSWR from 'swr';
+import { FaGithub } from 'react-icons/fa';
+import { HiArrowRight, HiExternalLink } from 'react-icons/hi';
 import { config } from '../config.jsx';
 
 const containerAnimation = {
@@ -30,25 +29,6 @@ const titleAnimation = {
     }
 };
 
-const languageColors = {
-    JavaScript: '#f1e05a',
-    TypeScript: '#2b7489',
-    Python: '#3572A5',
-    HTML: '#e34c26',
-    CSS: '#563d7c',
-    Java: '#b07219',
-    'C#': '#178600',
-    PHP: '#4F5D95',
-    Ruby: '#701516',
-    Go: '#00ADD8',
-    Swift: '#ffac45',
-    Kotlin: '#F18E33',
-    Rust: '#dea584',
-};
-
-const ITEMS_PER_PAGE = 12;
-const GITHUB_API_URL = `https://api.github.com/users/SKaushikRao/repos`;
-
 const getProjectSize = (index) => {
     const sizes = [
         "col-span-2 sm:col-span-1 md:col-span-2 row-span-1",
@@ -61,20 +41,10 @@ const getProjectSize = (index) => {
     return sizes[index % sizes.length];
 };
 
-const fetcher = async (url) => {
-    const res = await fetch(url);
-    if (!res.ok) {
-        throw new Error('Failed to fetch GitHub projects');
-    }
-    return res.json();
-};
-
 const ProjectCard = ({ project, size }) => {
-    const topics = project.topics || [];
-
     return (
         <motion.a
-            href={project.html_url}
+            href={project.github}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
@@ -96,64 +66,34 @@ const ProjectCard = ({ project, size }) => {
                     <div className="flex flex-col gap-3">
                         <div className="flex items-start justify-between gap-2">
                             <div className="flex items-center space-x-2 flex-1 min-w-0">
-                                <FaGithub className="w-4 h-4 text-white shrink-0" />
+                                <FaGithub className="w-4 h-4 text-white flex-shrink-0" />
                                 <h3 className="font-bold text-white text-sm truncate">
-                                    {project.name}
+                                    {project.title}
                                 </h3>
                             </div>
                             <HiExternalLink className="w-4 h-4 text-white/60 group-hover:text-white transition-colors shrink-0" />
                         </div>
 
                         <p className="text-xs text-white/70 line-clamp-3 leading-relaxed">
-                            {project.description || "No description provided"}
+                            {project.description}
                         </p>
                     </div>
 
                     <div className="flex flex-col gap-2 mt-auto">
-                        {topics.length > 0 && (
-                            <div className="flex flex-wrap gap-1.5">
-                                {topics.slice(0, size.includes('row-span-2') ? 3 : 2).map((topic) => (
-                                    <span
-                                        key={topic}
-                                        className="text-[10px] bg-white/10 text-white px-2 py-0.5 rounded-full border border-white/10"
-                                    >
-                                        {topic}
-                                    </span>
-                                ))}
-                                {topics.length > (size.includes('row-span-2') ? 3 : 2) && (
-                                    <span className="text-[10px] text-white/50">
-                                        +{topics.length - (size.includes('row-span-2') ? 3 : 2)}
-                                    </span>
-                                )}
-                            </div>
-                        )}
-
-                        <div className="flex items-center space-x-3 flex-wrap">
-                            {project.language && (
-                                <div className="flex items-center space-x-1">
-                                    <div
-                                        className="w-2.5 h-2.5 rounded-full"
-                                        style={{
-                                            backgroundColor: languageColors[project.language] || '#ccc'
-                                        }}
-                                    />
-                                    <span className="text-xs text-white/70">
-                                        {project.language}
-                                    </span>
-                                </div>
+                        <div className="flex flex-wrap gap-1.5">
+                            {project.technologies.slice(0, size.includes('row-span-2') ? 3 : 2).map((tech) => (
+                                <span
+                                    key={tech}
+                                    className="text-[10px] bg-white/10 text-white px-2 py-0.5 rounded-full border border-white/10"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                            {project.technologies.length > (size.includes('row-span-2') ? 3 : 2) && (
+                                <span className="text-[10px] text-white/50">
+                                    +{project.technologies.length - (size.includes('row-span-2') ? 3 : 2)}
+                                </span>
                             )}
-                            <div className="flex items-center space-x-1">
-                                <FaStar className="w-3 h-3 text-white/70" />
-                                <span className="text-xs text-white/70">
-                                    {project.stargazers_count}
-                                </span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                                <FaCodeBranch className="w-3 h-3 text-white/70" />
-                                <span className="text-xs text-white/70">
-                                    {project.forks_count}
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -163,38 +103,7 @@ const ProjectCard = ({ project, size }) => {
 };
 
 const ProjectsPage = () => {
-    const [page, setPage] = useState(1);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
-
-    const { data, error, isLoading, mutate: revalidateData } = useSWR(
-        `${GITHUB_API_URL}?sort=updated&per_page=${ITEMS_PER_PAGE * page}`,
-        fetcher,
-        {
-            revalidateOnFocus: false,
-            refreshInterval: 300000,
-            shouldRetryOnError: false,
-        }
-    );
-
-    const projects = useMemo(() => {
-        if (!data) return [];
-        const filtered = data
-            .filter(project => 
-                !project.fork && 
-                !project.private
-            )
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
-            .slice(0, ITEMS_PER_PAGE * page);
-        
-        return filtered.map((project, index) => ({
-            ...project,
-            size: getProjectSize(index)
-        }));
-    }, [data, page]);
-
-    const loadMore = () => {
-        setPage(prev => prev + 1);
-    };
+    const projects = config.projects || [];
 
     return (
         <section className="py-16 md:py-24 relative min-h-screen">
@@ -272,44 +181,24 @@ const ProjectsPage = () => {
                         variants={containerAnimation}
                         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 auto-rows-fr gap-4 w-full max-w-6xl mx-auto"
                     >
-                        {isLoading ? (
-                            Array(ITEMS_PER_PAGE).fill(0).map((_, index) => (
-                                <div key={index} className={getProjectSize(index)}>
-                                    <div className="bg-white/5 border border-white/10 p-5 rounded-2xl min-h-[140px] animate-pulse" />
-                                </div>
-                            ))
-                        ) : error ? (
-                            <div className="col-span-full text-center text-white/60">
-                                Failed to load projects. Please try again later.
-                            </div>
-                        ) : (
-                            projects.map((project) => (
-                                <ProjectCard key={project.id} project={project} size={project.size} />
-                            ))
-                        )}
+                        {projects.map((project, index) => (
+                            <ProjectCard key={project.id} project={project} size={getProjectSize(index)} />
+                        ))}
                     </motion.div>
 
-                    {/* Load More Button */}
-                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
-                        {!error && data?.length > projects.length && (
-                            <motion.button
-                                onClick={loadMore}
-                                disabled={isLoadingMore}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-all duration-300"
-                            >
-                                {isLoadingMore ? (
-                                    <>
-                                        <FaSpinner className="w-4 h-4 mr-2 animate-spin inline" />
-                                        Loading...
-                                    </>
-                                ) : (
-                                    'Load More Projects'
-                                )}
-                            </motion.button>
-                        )}
-                    </div>
+                    {/* Back to Home */}
+                    <motion.div
+                        variants={titleAnimation}
+                        className="text-center pt-8"
+                    >
+                        <Link
+                            to="/"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-all duration-300"
+                        >
+                            <HiArrowRight className="w-4 h-4 rotate-180" />
+                            Back to Home
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>
@@ -317,6 +206,3 @@ const ProjectsPage = () => {
 };
 
 export default ProjectsPage;
-
-
-
