@@ -100,7 +100,7 @@ const Experience = () => {
                                     <p className="text-white/60 text-sm mb-4">{experience.period}</p>
                                     <AnimatePresence>
                                         {expandedCards[experience.company] && (
-                                            <motion.div 
+                                            <motion.div
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={{ height: 'auto', opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
@@ -122,7 +122,7 @@ const Experience = () => {
                                 </div>
                                 <div className="z-10 relative mt-8 pt-4 border-t border-white/10">
                                     <p className="text-white/50 text-sm font-medium mb-4">{experience.technologies.slice(0, 3).join(' • ')}</p>
-                                    <button 
+                                    <button
                                         onClick={() => handleContactClick(experience)}
                                         className="w-full py-2.5 bg-white/5 hover:bg-white/10 transition-colors rounded-xl text-sm text-white/80 font-medium"
                                     >

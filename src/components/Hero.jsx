@@ -67,37 +67,23 @@ const Hero = () => {
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-tight"
                     >
                         <span className="block text-white mb-2">
-                            Hi, I'm {config.developer.name}
-                        </span>
-                        <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-white/60 via-white to-white/60 bg-clip-text text-transparent">
-                            {config.developer.title}
-                        </span>
-                    </motion.h1>
-
-                    <motion.div
-                        variants={itemAnimation}
-                        className="relative"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl" />
-                        <div className="relative p-6 sm:p-8 md:p-10">
-                            <DecryptedText
-                                text="Co-founder of Thriftz and Computer Science major focused on building scalable full-stack and cross-platform applications.
-
-5× SEA Awardee and 5× Hackathon winner with proven execution in high-pressure environments. Experience spans AI/ML research (Department of AI & ML), technical leadership as Senior Technical Advisor at IEEE GRSS, and active participation in Google Cloud's Silver League and Arcade program.
-
-Driven to engineer real-world, high-impact products at the intersection of AI and software systems."
+                            Hi, I'm <DecryptedText
+                                text={config.developer.name}
                                 speed={30}
                                 maxIterations={15}
                                 sequential={true}
                                 revealDirection="start"
                                 useOriginalCharsOnly={false}
                                 animateOn="view"
-                                className="text-white font-medium"
+                                className="text-white inline-block font-bold"
                                 encryptedClassName="text-white/40"
-                                parentClassName="block"
+                                parentClassName="inline-block"
                             />
-                        </div>
-                    </motion.div>
+                        </span>
+                        <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-white/60 via-white to-white/60 bg-clip-text text-transparent">
+                            {config.developer.title}
+                        </span>
+                    </motion.h1>
 
                     <motion.div
                         variants={itemAnimation}

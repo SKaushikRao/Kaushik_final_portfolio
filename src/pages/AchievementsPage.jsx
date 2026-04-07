@@ -12,7 +12,8 @@ const achievementsItems = [
   { link: '#', text: 'TechGIG Prompt Eng Winner', image: 'https://picsum.photos/600/400?random=7' },
   { link: '#', text: 'Pixel to Product Hackathon', image: 'https://picsum.photos/600/400?random=8' },
   { link: '#', text: '6X Excellence Awards, MUJ', image: 'https://picsum.photos/600/400?random=9' },
-  { link: '#', text: 'BUILD IT hackathon Winner 2026, MUJ', image: 'https://picsum.photos/600/400?random=10' }
+  { link: '#', text: 'BUILD IT hackathon Winner 2026, MUJ', image: 'https://picsum.photos/600/400?random=10' },
+  { link: '#', text: 'IIT ROORKEE E Summit Ideastorm Winner 2026', image: 'https://picsum.photos/600/400?random=11' }
 ];
 
 const AchievementsPage = () => {
@@ -40,7 +41,7 @@ const AchievementsPage = () => {
           speed={20}
           textColor="#ffffff"
           bgColor="#060010"
-          marqueeBgColor="#10b981"
+          marqueeBgColor="#ffffff"
           marqueeTextColor="#000000"
           borderColor="rgba(255, 255, 255, 0.1)"
         />

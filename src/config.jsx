@@ -5,7 +5,7 @@ import { HiCode, HiCube, HiDatabase, HiMail, HiBriefcase } from "react-icons/hi"
 export const config = {
     developer: {
         name: "Kaushik",
-        title: "9X Hackathon-winner, Co-Founder, Thriftz Marketplace LLP, Full stack web and App developer",
+        title: "10X Hackathon-winner, Co-Founder, Thriftz Marketplace LLP, Full stack web and App developer",
         bio: "Full-stack builder creating digital experiences that respect humans and scale with clarity. Specializing in AI/ML integration and modern web technologies."
     },
     contact: {
@@ -259,7 +259,7 @@ export const config = {
     ],
     achievements: [
         {
-            title: "9X Hackathon Winner",
+            title: "10X Hackathon Winner",
             description: "Google Developers TechSprint 2026 (Winner), Sociothon 2026, WikiClub Hackathon, Ideastorm (IIT Roorkee), TechGig National (2x)",
             type: "award"
         },
