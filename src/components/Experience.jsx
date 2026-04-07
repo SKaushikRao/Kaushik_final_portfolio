@@ -1,9 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { config } from '../config.jsx';
-import ProfileCard from './ProfileCard.jsx';
+import SpotlightCard from './SpotlightCard.jsx';
 
 const Experience = () => {
+    const [expandedCards, setExpandedCards] = useState({});
     const experiences = config.experiences || [];
 
     if (!experiences || experiences.length === 0) {
@@ -53,8 +54,7 @@ const Experience = () => {
     };
 
     const handleContactClick = (experience) => {
-        // Handle contact click - could open contact form, email, etc.
-        console.log('Contact clicked for:', experience.company);
+        setExpandedCards(prev => ({ ...prev, [experience.company]: !prev[experience.company] }));
     };
 
     return (
@@ -93,22 +93,43 @@ const Experience = () => {
                             variants={itemAnimation}
                             className="flex justify-center"
                         >
-                            <ProfileCard
-                                name={experience.position}
-                                title={`${experience.company} • ${experience.location}`}
-                                handle={experience.period}
-                                status={experience.technologies.slice(0, 3).join(' • ')}
-                                contactText="View Details"
-                                avatarUrl="/assets/img4.jpg" // You can customize avatar per experience
-                                showUserInfo={true}
-                                enableTilt={true}
-                                enableMobileTilt={false}
-                                behindGlowEnabled={true}
-                                behindGlowColor="rgba(125, 190, 255, 0.67)"
-                                innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
-                                onContactClick={() => handleContactClick(experience)}
-                                className="w-full max-w-sm"
-                            />
+                            <SpotlightCard className="h-full w-full max-w-sm flex flex-col" spotlightColor="rgba(0, 229, 255, 0.2)">
+                                <div className="z-10 relative flex-1">
+                                    <h3 className="text-xl font-bold text-white mb-2">{experience.position}</h3>
+                                    <p className="text-white/80 font-medium mb-1">{experience.company} • {experience.location}</p>
+                                    <p className="text-white/60 text-sm mb-4">{experience.period}</p>
+                                    <AnimatePresence>
+                                        {expandedCards[experience.company] && (
+                                            <motion.div 
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <p className="text-white/70 text-sm mt-4 mb-2 leading-relaxed">
+                                                    {experience.description}
+                                                </p>
+                                                {experience.responsibilities && (
+                                                    <ul className="list-disc list-inside text-white/60 text-sm space-y-1 mb-4">
+                                                        {experience.responsibilities.map((resp, i) => (
+                                                            <li key={i}>{resp}</li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                                <div className="z-10 relative mt-8 pt-4 border-t border-white/10">
+                                    <p className="text-white/50 text-sm font-medium mb-4">{experience.technologies.slice(0, 3).join(' • ')}</p>
+                                    <button 
+                                        onClick={() => handleContactClick(experience)}
+                                        className="w-full py-2.5 bg-white/5 hover:bg-white/10 transition-colors rounded-xl text-sm text-white/80 font-medium"
+                                    >
+                                        {expandedCards[experience.company] ? 'Hide Details' : 'View Details'}
+                                    </button>
+                                </div>
+                            </SpotlightCard>
                         </motion.div>
                     ))}
                 </motion.div>

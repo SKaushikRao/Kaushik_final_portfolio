@@ -258,7 +258,7 @@ export const config = {
     ],
     achievements: [
         {
-            title: "5x Hackathon Winner",
+            title: "7X Hackathon Winner",
             description: "Google Developers TechSprint 2026 (Winner), Sociothon 2026, WikiClub Hackathon, Ideastorm (IIT Roorkee), TechGig National (2x)",
             type: "award"
         },

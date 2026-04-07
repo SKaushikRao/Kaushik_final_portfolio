@@ -74,6 +74,16 @@ const Header = () => {
                                     </Link>
                                 </motion.div>
                             ))}
+                            <motion.a 
+                                href="/Final_Resume_Kaushik.pdf" 
+                                download 
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: config.NAV_ITEMS.length * 0.1 }}
+                                className="hidden md:inline-flex items-center px-4 py-1.5 ml-4 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 transition-colors border border-white/5"
+                            >
+                                Download Resume
+                            </motion.a>
                         </nav>
 
                         <button
@@ -123,6 +133,13 @@ const Header = () => {
                                         {item.label}
                                     </Link>
                                 ))}
+                                <a 
+                                    href="/Final_Resume_Kaushik.pdf" 
+                                    download 
+                                    className="mt-6 mx-4 px-4 py-3 text-center rounded-xl bg-white/10 text-white font-medium hover:bg-white/20 transition-colors border border-white/5 shrink-0"
+                                >
+                                    Download Resume
+                                </a>
                             </div>
                         </motion.div>
                     </>
